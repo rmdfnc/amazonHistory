@@ -30,21 +30,20 @@ cumtotal = np.cumsum(total)
 
 
 #### Visualize the data ####
-
-#Plot cumulative total
-fig, ax = plt.subplots(211)
-#ax.plot_date(date,cumtotal)
-plt.plot(date,cumtotal)
-plt.ylabel("Cumulative Spend ($)")
-fig.autofmt_xdate()
-plt.show()
-
+fig, ax = plt.subplots(2)
 
 #Plot the distribution of purchase sizes
-#plt.subplot(212)
-#n, bins, patches = plt.hist(total, 5, normed=1, facecolor='green', alpha=0.75)
+n, bins, patches = ax[0].hist(total, 5,  facecolor='green', alpha=0.75)
+ax[0].set_ylabel("# of Purchases")
+ax[0].set_xlabel("Dollar Amount")
 
+#Plot cumulative total
+ax[1].plot(date,cumtotal)
+ax[1].set_ylabel("Cumulative Spend ($)")
 
-#plt.show()
+#Format figure
+plt.setp(plt.xticks()[1],rotation=30, ha='right')
+plt.tight_layout()  # Moves axis edges to prevent axis labels from being clipped
+plt.show()
 
 
